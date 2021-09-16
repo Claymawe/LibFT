@@ -3,34 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 15:37:32 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/16 11:01:05 by mrobinso         ###   ########.fr       */
+/*   Created: 2021/09/07 10:36:12 by druth             #+#    #+#             */
+/*   Updated: 2021/09/07 10:36:12 by druth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-** get string dst and l copy from sourse into dst this much into string
-*/
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	size_t	i;
+	size_t	track;
+	size_t	length;
 
-	i = 0;
-	if (size > 0)
+	track = 0;
+	while (src[track] != '\0')
+		track++;
+	length = track;
+	if (size == 0)
+		return (length);
+	track = 0;
+	while (src[track] && track < (size - 1))
 	{
-		while (src[i] && i < (size - 1))
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = 0;
+		dest[track] = src[track];
+		track++;
 	}
-	while (src[i])
-		i++;
-	return (i);
+	dest[track] = '\0';
+	return (length);
 }

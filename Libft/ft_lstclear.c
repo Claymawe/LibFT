@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,27 +12,17 @@
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int	track;
-	int	sign;
-	int	output;
+	t_list	*temp;
 
-	track = 0;
-	output = 0;
-	sign = 1;
-	while (nptr[track] == ' ' || nptr[track] == '\t'
-		|| nptr[track] == '\n' || nptr[track] == '\v'
-		|| nptr[track] == '\f' || nptr[track] == '\r')
-		track++;
-	if (nptr[track] == '-')
-		sign = -1;
-	if (nptr[track] == '-' || nptr[track] == '+')
-		track++;
-	while (nptr[track] >= '0' && nptr[track] <= '9')
+	if (del != NULL)
 	{
-		output = output * 10 + (nptr[track] - 48) * sign;
-		track++;
+		while (*lst != NULL && lst != NULL)
+		{
+			temp = (*lst)->next;
+			ft_lstdelone(*lst, del);
+			*lst = temp;
+		}
 	}
-	return (output);
 }

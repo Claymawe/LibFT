@@ -3,31 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 14:09:53 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/10 10:35:19 by mrobinso         ###   ########.fr       */
+/*   Created: 2021/09/07 10:36:10 by druth             #+#    #+#             */
+/*   Updated: 2021/09/07 10:36:10 by druth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-** The ft_memset functions writes bytes of value c to the string
-** b. returns it's first argument.
-*/
-
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *str, int c, size_t n)
 {
-	char		*str;
-	size_t		i;
+	size_t			track;
+	unsigned char	input;
 
-	str = (char *)b;
-	i = 0;
-	while (i < len)
+	track = 0;
+	input = (unsigned char)(c);
+	while (track < n)
 	{
-		str[i] = (unsigned char)c;
-		i++;
+		*(unsigned char *)(str + track) = input;
+		track++;
 	}
-	return (b);
+	return (str);
 }

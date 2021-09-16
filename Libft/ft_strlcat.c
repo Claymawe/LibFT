@@ -3,44 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 15:47:40 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/16 10:22:13 by mrobinso         ###   ########.fr       */
+/*   Created: 2021/09/07 10:36:11 by druth             #+#    #+#             */
+/*   Updated: 2021/09/07 10:36:11 by druth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-** the function appends string src to the end of dst.
-** it will NULL_terminate unless maxlen is 0 or the original dst string was
-** longer than maxlen.
-*/
-
-size_t	ft_strlcat(char *dst, const char *src, size_t maxlen)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	size_t	srclen;
-	size_t	dstlen;
+	size_t	track;
+	size_t	second;
+	size_t	length;
 
-	srclen = ft_strlen(src);
-	dstlen = ft_strlen(dst);
-	if (dstlen > maxlen)
+	length = ft_strlen(dest);
+	track = length;
+	second = 0;
+	if (length < size - 1 && size > 0)
 	{
-		dstlen = maxlen;
+		while (src[second] && (length + second) < (size - 1))
+		{
+			dest[track] = src[second];
+			track++;
+			second++;
+		}
+		dest[track] = '\0';
 	}
-	if (dstlen == maxlen || maxlen == 0)
-	{
-		return (dstlen + srclen);
-	}
-	if (srclen < maxlen - dstlen)
-	{
-		ft_memcpy(dst + dstlen, src, srclen + 1);
-	}
-	else
-	{
-		ft_memcpy(dst + dstlen, src, maxlen - dstlen - 1);
-		dst[maxlen - 1] = '\0';
-	}
-	return (dstlen + srclen);
+	if (length >= size)
+		length = size;
+	while (src[second] != '\0')
+		second++;
+	return (length + second);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,18 +12,40 @@
 
 #include "libft.h"
 
-void	*ft_memchr(const void *dest, int c, size_t n)
+static t_list	*ft_freeloader(t_list *lst, void (*del)(void *))
 {
-	size_t	track;
+	t_list	*temp;
 
-	if (dest == 0)
-		return (NULL);
-	track = 0;
-	while (track < n)
+	temp = lst->next;
+	ft_lstclear(&lst, del);
+	while (lst != NULL)
 	{
-		if (*(unsigned char *)(dest + track) == (unsigned char)(c))
-			return ((void *)(dest + track));
-		track++;
+		temp = lst->next;
+		del(lst);
+		lst = temp;
 	}
 	return (NULL);
+}
+
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+	t_list	*newlst;
+	t_list	*start;
+
+	if (lst == NULL || f == NULL || del == NULL)
+		return (NULL);
+	newlst = ft_lstnew(f(lst->content));
+	if (newlst == NULL)
+		return (NULL);
+	start = newlst;
+	lst = lst->next;
+	while (lst != NULL)
+	{
+		newlst->next = ft_lstnew(f(lst->content));
+		if (newlst->next == NULL)
+			return (ft_freeloader(start, del));
+		lst = lst->next;
+		newlst = newlst->next;
+	}
+	return (start);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,27 +12,45 @@
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+static int	ft_length(int n)
 {
 	int	track;
-	int	sign;
-	int	output;
 
-	track = 0;
-	output = 0;
-	sign = 1;
-	while (nptr[track] == ' ' || nptr[track] == '\t'
-		|| nptr[track] == '\n' || nptr[track] == '\v'
-		|| nptr[track] == '\f' || nptr[track] == '\r')
+	track = 1;
+	if (n < 0)
 		track++;
-	if (nptr[track] == '-')
-		sign = -1;
-	if (nptr[track] == '-' || nptr[track] == '+')
-		track++;
-	while (nptr[track] >= '0' && nptr[track] <= '9')
+	while (n != 0)
 	{
-		output = output * 10 + (nptr[track] - 48) * sign;
 		track++;
+		n /= 10;
+	}
+	return (track);
+}
+
+char	*ft_itoa(int n)
+{
+	int		track;
+	int		sign;
+	char	*output;
+
+	track = ft_length(n);
+	sign = 1;
+	output = (char *)malloc(sizeof(char) * track);
+	if (output == NULL)
+		return (NULL);
+	output[--track] = '\0';
+	if (n == 0)
+		output[0] = '0';
+	if (n < 0)
+	{
+		output[0] = '-';
+		sign *= -1;
+	}
+	while (n != 0)
+	{
+		track--;
+		output[track] = ((n % 10) * sign) + 48;
+		n /= 10;
 	}
 	return (output);
 }

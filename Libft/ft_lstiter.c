@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,18 +12,11 @@
 
 #include "libft.h"
 
-void	*ft_memchr(const void *dest, int c, size_t n)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t	track;
-
-	if (dest == 0)
-		return (NULL);
-	track = 0;
-	while (track < n)
+	while (lst != NULL)
 	{
-		if (*(unsigned char *)(dest + track) == (unsigned char)(c))
-			return ((void *)(dest + track));
-		track++;
+		f(lst->content);
+		lst = lst->next;
 	}
-	return (NULL);
 }

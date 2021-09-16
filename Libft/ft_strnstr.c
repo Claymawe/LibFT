@@ -3,44 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 10:49:30 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/10 10:58:14 by mrobinso         ###   ########.fr       */
+/*   Created: 2021/09/07 10:36:12 by druth             #+#    #+#             */
+/*   Updated: 2021/09/07 10:36:12 by druth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-** the function locates the furst occurrence of the null-terminated string
-** in the null-terminated string haystack where there is no more than len 
-** characters are searched.
-*/
-
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *str, const char *to_find, size_t size)
 {
-	char	*phaystack;
-	size_t	letters_left;
-	size_t	needle_len;
-	size_t	i;
+	size_t	track;
+	size_t	finder;
 
-	phaystack = (char *)haystack;
-	if (needle[0] == '\0')
-		return (phaystack);
-	i = 0;
-	letters_left = len;
-	needle_len = (size_t)ft_strlen(needle);
-	while (*phaystack && letters_left >= needle_len)
+	if (str == NULL || to_find == NULL)
+		return (NULL);
+	track = 0;
+	finder = 0;
+	if (to_find[0] == '\0')
+		return ((char *)str);
+	while (str[track] != '\0' && track < size)
 	{
-		if (*phaystack == *needle)
-		{
-			if (ft_strncmp(needle, phaystack, needle_len) == 0)
-				return (phaystack);
-		}
-		i++;
-		letters_left--;
-		phaystack++;
+		if (str[track] == to_find[finder])
+			finder++;
+		else
+			finder = 0;
+		if (to_find[finder] == '\0')
+			return ((char *)(str + track - finder + 1));
+		track++;
 	}
 	return (NULL);
 }

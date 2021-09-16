@@ -3,44 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/15 11:23:15 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/15 11:31:56 by mrobinso         ###   ########.fr       */
+/*   Created: 2021/09/07 10:36:12 by druth             #+#    #+#             */
+/*   Updated: 2021/09/07 10:36:12 by druth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-** Allocates with malloc(3) and returns a substring from the string 's'
-** the substring begins at index 'start' and is of maximum size 'len'
-*/
+size_t	ft_check(char const *s, unsigned int start, size_t len)
+{
+	size_t	track;
+
+	track = 0;
+	while (s[track] != '\0')
+		track++;
+	track++;
+	if (start > track || start < 0)
+		return (0);
+	if ((start + len) > track)
+		return (-1 * (start - track));
+	return (len);
+}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*rtn;
-	size_t	i;
+	size_t		track;
+	char		*output;
 
-	if (!s)
-	{
+	if (s == NULL)
 		return (NULL);
-	}
-	if ((size_t)start > ft_strlen(s))
-	{	
-		return (ft_strdup(""));
-	}
-	rtn = malloc(sizeof(char) * (len + 1));
-	i = 0;
-	if (!rtn)
+	len = ft_check(s, start, len);
+	output = (char *)malloc(sizeof(char) * (len + 1));
+	if (output == NULL)
+		return (NULL);
+	track = 0;
+	while (track < len)
 	{
-		return (0);
+		output[track] = s[track + start];
+		track++;
 	}
-	while (i < len)
-	{
-		rtn[i] = *(s + start + i);
-		i++;
-	}
-	rtn[i] = '\0';
-	return (rtn);
+	output[track] = '\0';
+	return (output);
 }

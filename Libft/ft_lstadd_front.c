@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,27 +12,12 @@
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	int	track;
-	int	sign;
-	int	output;
-
-	track = 0;
-	output = 0;
-	sign = 1;
-	while (nptr[track] == ' ' || nptr[track] == '\t'
-		|| nptr[track] == '\n' || nptr[track] == '\v'
-		|| nptr[track] == '\f' || nptr[track] == '\r')
-		track++;
-	if (nptr[track] == '-')
-		sign = -1;
-	if (nptr[track] == '-' || nptr[track] == '+')
-		track++;
-	while (nptr[track] >= '0' && nptr[track] <= '9')
+	if (lst != NULL)
 	{
-		output = output * 10 + (nptr[track] - 48) * sign;
-		track++;
+		if (*lst != NULL)
+			new->next = *lst;
+		*lst = new;
 	}
-	return (output);
 }
