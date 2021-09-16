@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrobinso <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 15:37:32 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/07 15:37:35 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/16 11:01:05 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 /*
 ** get string dst and l copy from sourse into dst this much into string
 */
 
-int	ft_strlcpy(char *dst, const char *src, int size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	int	i;
+	size_t	i;
 
+	i = 0;
 	if (size > 0)
 	{
 		while (src[i] && i < (size - 1))

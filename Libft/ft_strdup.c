@@ -6,7 +6,7 @@
 /*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 11:44:47 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/10 11:50:00 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/15 14:48:38 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,23 @@
 ** NULL is applied.
 */
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *src)
 {
-	int		s1_len;
-	char	*str_copy;
+	char	*dup;
 	int		i;
 
-	s1_len = ft_strlen(s1);
-	str_copy = malloc(sizeof(*str_copy) * (s1_len + 1));
-	if (str_copy)
+	i = 0;
+	while (src[i] != '\0')
+		i++;
+	dup = (char *)malloc(i + 1);
+	if (dup == NULL)
+		return (0);
+	i = 0;
+	while (src[i] != '\0')
 	{
-		i = 0;
-		while (s1[i] != '\0')
-		{
-			str_copy[i] = s1[i];
-			i++;
-		}
-		str_copy[i] = '\0';
+		dup[i] = src[i];
+		i++;
 	}
-	return (str_copy);
+	dup[i] = '\0';
+	return (dup);
 }

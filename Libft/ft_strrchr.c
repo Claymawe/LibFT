@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strrchr.c                                          :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrobinso <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 10:56:29 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/07 11:08:36 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/15 14:38:01 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 /*
 ** The ft_strrchr() function locates the last occurrence of c (converted to a

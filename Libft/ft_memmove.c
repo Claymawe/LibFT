@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrobinso <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 14:45:39 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/07 14:45:42 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/16 11:08:47 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ non-destructive manner.
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t		i;
+	int		i;
 
+	if (!dst || !src)
+		return (NULL);
 	if (dst > src)
 	{
 		i = (int)len - 1;

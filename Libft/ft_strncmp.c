@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrobinso <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:10:26 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/07 12:16:42 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/16 10:36:40 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 /*
 ** The ft_strncmp() function compares the null-terminated
@@ -20,9 +20,9 @@
 ** using unsigned characters, so that '\200' is greater than '\0'.
 */
 
-int	ft_strncmp(const char *s1, const char *s2, int n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
+	size_t	i;
 
 	if (n == 0)
 		return (0);

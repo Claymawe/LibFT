@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrobinso <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 15:47:40 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/07 15:47:42 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/16 10:22:13 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 /*
 ** the function appends string src to the end of dst.
@@ -18,10 +18,10 @@
 ** longer than maxlen.
 */
 
-int	ft_strlcat(char *dst, const char *src, int maxlen)
+size_t	ft_strlcat(char *dst, const char *src, size_t maxlen)
 {
-	int	srclen;
-	int	dstlen;
+	size_t	srclen;
+	size_t	dstlen;
 
 	srclen = ft_strlen(src);
 	dstlen = ft_strlen(dst);
