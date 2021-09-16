@@ -3,36 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 10:36:09 by druth             #+#    #+#             */
-/*   Updated: 2021/09/07 10:36:09 by druth            ###   ########.fr       */
+/*   Created: 2021/09/10 11:11:39 by mrobinso          #+#    #+#             */
+/*   Updated: 2021/09/10 11:33:52 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
-{
-	int	track;
-	int	sign;
-	int	output;
+/*
+** this function converts the initial portion of the string pointed
+** to by str to int representation.
+*/
 
-	track = 0;
-	output = 0;
-	sign = 1;
-	while (nptr[track] == ' ' || nptr[track] == '\t'
-		|| nptr[track] == '\n' || nptr[track] == '\v'
-		|| nptr[track] == '\f' || nptr[track] == '\r')
-		track++;
-	if (nptr[track] == '-')
-		sign = -1;
-	if (nptr[track] == '-' || nptr[track] == '+')
-		track++;
-	while (nptr[track] >= '0' && nptr[track] <= '9')
+static int	isspace(char c)
+{
+	if (c == '\t' || c == '\n' || c == '\r')
+		return (1);
+	else if (c == '\f' || c == '\v' || c == ' ')
+		return (1);
+	else
+		return (0);
+}
+
+int	ft_atoi(const char *str)
+{
+	int	res;
+	int	negative;
+
+	negative = 1;
+	res = 0;
+	while (isspace(*str))
+		str++;
+	if (*str == '-')
 	{
-		output = output * 10 + (nptr[track] - 48) * sign;
-		track++;
+		negative = -1;
+		str++;
 	}
-	return (output);
+	else if (*str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
+		res = (res * 10) + (*str++ - 48);
+	return (negative * res);
 }

@@ -3,24 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 10:36:09 by druth             #+#    #+#             */
-/*   Updated: 2021/09/07 10:36:09 by druth            ###   ########.fr       */
+/*   Created: 2021/09/07 14:19:08 by mrobinso          #+#    #+#             */
+/*   Updated: 2021/09/16 11:06:07 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *str, size_t n)
-{
-	size_t	track;
+/*
+** The bzero function writes n zeroed bytes \0 to the string s.
+** If n is zero, bzero does nothing
+*/
 
-	track = 0;
-	while (track < n)
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (i < n)
 	{
-		*(char *)str = '\0';
-		str += sizeof(char);
-		track++;
+		*(char *)(s + i) = 0;
+		i++;
 	}
 }

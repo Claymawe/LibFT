@@ -3,27 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 10:36:10 by druth             #+#    #+#             */
-/*   Updated: 2021/09/07 10:36:10 by druth            ###   ########.fr       */
+/*   Created: 2021/09/10 10:17:42 by mrobinso          #+#    #+#             */
+/*   Updated: 2021/09/10 10:36:05 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *dest, int c, size_t n)
-{
-	size_t	track;
+/*
+** The Function locates the furst occurrence of c in string
+** returns a pointer to the byte located or NULL if no byte is
+** located
+*/
 
-	if (dest == 0)
-		return (NULL);
-	track = 0;
-	while (track < n)
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	size_t			i;
+	unsigned char	*str;
+	unsigned char	character;
+
+	str = (unsigned char *)s;
+	character = (unsigned char)c;
+	i = 0;
+	while (i < n)
 	{
-		if (*(unsigned char *)(dest + track) == (unsigned char)(c))
-			return ((void *)(dest + track));
-		track++;
+		if (*str == character)
+		{
+			return (str);
+		}
+		str++;
+		i++;
 	}
 	return (NULL);
 }

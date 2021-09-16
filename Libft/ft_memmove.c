@@ -3,38 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 10:36:10 by druth             #+#    #+#             */
-/*   Updated: 2021/09/07 10:36:10 by druth            ###   ########.fr       */
+/*   Created: 2021/09/07 14:45:39 by mrobinso          #+#    #+#             */
+/*   Updated: 2021/09/16 11:08:47 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
-{
-	int	track;
+/*
+** The function copies bytes from string src to string dst.
+** the two strings may overlap but the copy is always done in a 
+non-destructive manner.
+*/
 
-	if (dest == 0 || src == 0)
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	int		i;
+
+	if (!dst || !src)
 		return (NULL);
-	if (dest > src)
+	if (dst > src)
 	{
-		track = (int)(n) - 1;
-		while (track >= 0)
+		i = (int)len - 1;
+		while (i >= 0)
 		{
-			*(char *)(dest + track) = *(char *)(src + track);
-			track--;
+			((char *)dst)[i] = ((char *)src)[i];
+			i--;
 		}
 	}
 	else
 	{
-		track = 0;
-		while (track < (int)(n))
-		{
-			*(char *)(dest + track) = *(char *)(src + track);
-			track++;
-		}
+		ft_memcpy(dst, src, len);
 	}
-	return (dest);
+	return (dst);
 }

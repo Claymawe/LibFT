@@ -3,53 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 10:36:11 by druth             #+#    #+#             */
-/*   Updated: 2021/09/07 10:36:11 by druth            ###   ########.fr       */
+/*   Created: 2021/09/15 12:33:27 by mrobinso          #+#    #+#             */
+/*   Updated: 2021/09/15 12:40:10 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_printer(char *output, int fd)
-{
-	int	track;
-
-	track = 9;
-	while (track >= 0)
-	{
-		if (output[track] != '\0')
-			write(fd, &output[track], 1);
-		track--;
-	}
-}
+/*
+** Outputs the integer n to the given file descrptor.
+*/
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	int		track;
-	int		sign;
-	char	output[10];
+	char	c;
 
-	if (n == 0)
+	if (n == -2147483648)
+		write(fd, "-2147483648", 11);
+	else
 	{
-		write(fd, "0", 1);
-		return ;
-	}
-	sign = 1;
-	if (n < 0)
-		write(fd, "-", 1);
-	if (n < 0)
-		sign *= -1;
-	track = 0;
-	while (n != 0 || track < 10)
-	{
-		if (n == 0)
-			output[track] = '\0';
+		if (n < 0)
+		{
+			write(fd, "-", 1);
+			n = -n;
+			ft_putnbr_fd(n, fd);
+		}
+		else if (n < 10)
+		{
+			c = n + '0';
+			write(fd, &c, 1);
+		}
 		else
-			output[track] = (n % 10) * sign + 48;
-		n /= 10;
-		track++;
+		{
+			ft_putnbr_fd(n / 10, fd);
+			c = (n % 10) + '0';
+			write(fd, &c, 1);
+		}
 	}
-	ft_printer(output, fd);
 }

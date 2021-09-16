@@ -3,36 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 10:36:12 by druth             #+#    #+#             */
-/*   Updated: 2021/09/07 10:36:12 by druth            ###   ########.fr       */
+/*   Created: 2021/09/07 12:10:26 by mrobinso          #+#    #+#             */
+/*   Updated: 2021/09/16 10:36:40 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+** The ft_strncmp() function compares the null-terminated
+** strings s1 and s2. Returns an integer greater than, equal to, or less than
+** 0, according as the string s1 is greater than, equal to, or less than the
+** string s2.  Compares not more than n characters. The comparison is done
+** using unsigned characters, so that '\200' is greater than '\0'.
+*/
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 
-	i = 0;
 	if (n == 0)
 		return (0);
-	while (s2[i] != '\0' && s1[i] != '\0' && i < n)
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && i < (n - 1))
 	{
-		if (s2[i] != s1[i])
-		{
-			if (s1[i] < s2[i])
-				return (-1);
-			else
-				return (1);
-		}
 		i++;
 	}
-	if (s1[i] == '\0' && s2[i] != '\0')
-		return (-1);
-	if (s2[i] == '\0' && s1[i] != '\0')
-		return (1);
-	return (0);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

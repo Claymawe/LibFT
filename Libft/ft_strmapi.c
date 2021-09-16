@@ -3,34 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 10:36:12 by druth             #+#    #+#             */
-/*   Updated: 2021/09/07 10:36:12 by druth            ###   ########.fr       */
+/*   Created: 2021/09/15 14:02:57 by mrobinso          #+#    #+#             */
+/*   Updated: 2021/09/16 10:45:34 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+** Apples the function f to each character of the string
+** s to create a new string with malloc (3) resulting from successive
+** applications of f.
+*/
+
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int	track;
-	char			*output;
+	char			*str;
+	unsigned int	i;
 
-	if (s == NULL || f == NULL)
+	if (!s)
 		return (NULL);
-	track = 0;
-	while (s[track] != '\0')
-		track++;
-	output = (char *)malloc(sizeof(char) * (track + 1));
-	if (output == NULL)
+	i = 0;
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s)) + 1);
+	if (str == NULL)
 		return (NULL);
-	track = 0;
-	while (s[track] != '\0')
+	while (s[i] != '\0')
 	{
-		output[track] = f(track, s[track]);
-		track++;
+		str[i] = f(i, s[i]);
+		i++;
 	}
-	output[track] = '\0';
-	return (output);
+	str[i] = '\0';
+	return (str);
 }

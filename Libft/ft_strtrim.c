@@ -3,95 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 10:36:12 by druth             #+#    #+#             */
-/*   Updated: 2021/09/07 10:36:12 by druth            ###   ########.fr       */
+/*   Created: 2021/09/15 12:01:18 by mrobinso          #+#    #+#             */
+/*   Updated: 2021/09/16 12:11:53 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_finale(char const *s1, char const *set, int track, int count)
-{
-	int	setter;
-	int	check;
+/*
+** Allocates with malloc(3) add returns a copy of s1 with the character specified
+**in set removed from the beginning and the end of the string.
+*/
 
-	while (count > 0)
+static int	ft_char_in_set(char c, char const *set)
+{
+	size_t	i;
+
+	i = 0;
+	while (set[i])
 	{
-		setter = 0;
-		check = count;
-		while (set[setter] != '\0' && s1[track + count] != '\0')
-		{
-			while (s1[track + count] == set[setter])
-				count--;
-			setter++;
-		}
-		if (check == count)
-			break ;
+		if (set[i] == c)
+			return (1);
+		i++;
 	}
-	return (count);
-}
-
-static int	ft_finish(char const *s1, char const *set, int track)
-{
-	int	count;
-
-	count = 0;
-	while (s1[track + count] != '\0')
-		count++;
-	return (ft_finale(s1, set, track, count - 1));
-}
-
-static int	ft_count(char const *s1, char const *set, int flag)
-{
-	int	track;
-	int	setter;
-	int	check;
-
-	track = 0;
-	while (s1[track] != '\0')
-	{
-		setter = 0;
-		check = track;
-		while (set[setter] != '\0' && s1[track] != '\0')
-		{
-			while (s1[track] == set[setter])
-				track++;
-			setter++;
-		}
-		if (check == track)
-			break ;
-	}
-	if (flag == 1)
-		return (track);
-	else
-		return (ft_finish(s1, set, track));
+	return (0);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		track;
-	char	*output;
-	int		count;
-	int		final;
+	char	*str;
+	size_t	i;
+	size_t	start;
+	size_t	end;
 
-	count = ft_count(s1, set, 0);
-	if (count <= 0)
-	{
-		output = (char *)malloc(sizeof(char));
-		if (output == NULL)
-			return (NULL);
-		output[0] = '\0';
-		return (output);
-	}
-	output = (char *)malloc(sizeof(char) * count);
-	if (output == NULL)
+	start = 0;
+	while (s1[start] && ft_char_in_set(s1[start], set))
+		start++;
+	end = ft_strlen(s1);
+	while (end > start && ft_char_in_set(s1[end - 1], set))
+		end--;
+	str = (char *)malloc(sizeof(*s1) * (end - start + 1));
+	if (!str)
 		return (NULL);
-	track = ft_count(s1, set, 1);
-	final = 0;
-	while (final <= count)
-		output[final++] = s1[track++];
-	output[final] = '\0';
-	return (output);
+	i = 0;
+	while (start < end)
+		str[i++] = s1[start++];
+	str[i] = 0;
+	return (str);
 }

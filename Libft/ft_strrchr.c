@@ -3,32 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 10:36:12 by druth             #+#    #+#             */
-/*   Updated: 2021/09/07 10:36:12 by druth            ###   ########.fr       */
+/*   Created: 2021/09/07 10:56:29 by mrobinso          #+#    #+#             */
+/*   Updated: 2021/09/15 14:38:01 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *str, int c)
-{
-	int	track;
-	int	last;
+/*
+** The ft_strrchr() function locates the last occurrence of c (converted to a
+** char). The terminating null character is
+** considered to be part of the string; therefore if c is '\0', the functions
+** locate the terminating '\0'. Returns a pointer to the located character,
+** or NULL if the character does not appear in the string.
+*/
 
-	track = 0;
-	last = -1;
-	while (str[track] != '\0')
+char	*ft_strrchr(const char	*s, int c)
+{
+	char	*pointer;
+	int		s_len;
+
+	s_len = ft_strlen(s);
+	pointer = (char *)s + s_len - 1;
+	if (c == '\0')
 	{
-		if (str[track] == (char)(c))
-			last = track;
-		track++;
+		pointer++;
+		return (pointer);
 	}
-	if (str[track] == '\0' && (char)(c) == '\0')
-		return ((char *)(str + track));
-	if (last != -1)
-		return ((char *)(str + last));
-	else
-		return (NULL);
+	while (s_len != 0)
+	{
+		if (*pointer == c)
+		{
+			return (pointer);
+		}
+		s_len--;
+		pointer--;
+	}
+	return (NULL);
 }

@@ -3,54 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 10:36:09 by druth             #+#    #+#             */
-/*   Updated: 2021/09/07 10:36:09 by druth            ###   ########.fr       */
+/*   Created: 2021/09/16 12:43:38 by mrobinso          #+#    #+#             */
+/*   Updated: 2021/09/16 12:51:40 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_length(int n)
+static void	lengths(int n, size_t *len, int *weight)
 {
-	int	track;
-
-	track = 1;
-	if (n < 0)
-		track++;
-	while (n != 0)
+	*len = 1;
+	if (n >= 0)
 	{
-		track++;
-		n /= 10;
+		*len = 0;
+		n = -n;
 	}
-	return (track);
+	*weight = 1;
+	while (n / *weight < -9)
+	{
+		*weight *= 10;
+		*len += 1;
+	}
 }
 
 char	*ft_itoa(int n)
 {
-	int		track;
-	int		sign;
-	char	*output;
+	size_t		len;
+	int			weight;
+	size_t		cur;
+	char		*str;
 
-	track = ft_length(n);
-	sign = 1;
-	output = (char *)malloc(sizeof(char) * track);
-	if (output == NULL)
+	lengths(n, &len, &weight);
+	str = (char *)malloc(sizeof(*str) * (len + 1));
+	if (str == NULL)
 		return (NULL);
-	output[--track] = '\0';
-	if (n == 0)
-		output[0] = '0';
+	cur = 0;
 	if (n < 0)
 	{
-		output[0] = '-';
-		sign *= -1;
+		str[cur] = '-';
+		cur++;
 	}
-	while (n != 0)
+	if (n > 0)
+		n = -n;
+	while (weight >= 1)
 	{
-		track--;
-		output[track] = ((n % 10) * sign) + 48;
-		n /= 10;
+		str[cur++] = -(n / weight % 10 ) + 48;
+		weight /= 10;
 	}
-	return (output);
+	str[cur] = '\0';
+	return (str);
 }

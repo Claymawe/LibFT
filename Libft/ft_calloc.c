@@ -3,28 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: druth <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 10:36:09 by druth             #+#    #+#             */
-/*   Updated: 2021/09/07 10:36:09 by druth            ###   ########.fr       */
+/*   Created: 2021/09/10 11:37:22 by mrobinso          #+#    #+#             */
+/*   Updated: 2021/09/10 11:43:45 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+** this function assigns a pointer to a size and count
+** if unable to assign the pointer return NULL
+*/
+
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*output;
-	size_t	track;
+	void	*ptr;
 
-	output = malloc(count * size);
-	if (output == NULL)
+	ptr = (void *)malloc(count * size);
+	if (!ptr)
 		return (NULL);
-	track = 0;
-	while (track < (count * size))
-	{
-		*(char *)(output + track) = 0;
-		track++;
-	}
-	return (output);
+	ft_bzero(ptr, count);
+	return (ptr);
 }
