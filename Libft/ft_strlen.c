@@ -6,7 +6,7 @@
 /*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:04:51 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/15 14:52:35 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/17 11:16:45 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** The ft_strlen() function computes the length of the string.
 */
 
-size_t	ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
 	size_t	i;
 

@@ -6,11 +6,16 @@
 /*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 12:43:38 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/16 12:51:40 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/17 09:48:26 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** Allocates with malloc(3) and returns a string representing the integer
+** received as an argument.
+*/
 
 static void	lengths(int n, size_t *len, int *weight)
 {

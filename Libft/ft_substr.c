@@ -6,7 +6,7 @@
 /*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:23:15 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/15 11:31:56 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/17 11:22:38 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	{
 		return (NULL);
 	}
-	if ((size_t)start > ft_strlen(s))
+	if (start > len)
 	{	
 		return (ft_strdup(""));
 	}
