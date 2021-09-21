@@ -6,7 +6,7 @@
 /*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 10:34:31 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/17 11:55:18 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/21 13:55:17 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
+	size_t			content_size;
 }					t_list;
-t_list				*ft_lstnew(void *content);
+t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 int					ft_lstsize(t_list *lst);
 t_list				*ft_lstlast(t_list *lst);
