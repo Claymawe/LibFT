@@ -6,7 +6,7 @@
 /*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 14:31:12 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/10 10:35:28 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/28 11:23:51 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,16 @@
 ** if dst and src overlap behaviour is undefined
 */
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, int n)
 {
-	size_t				i;
-	unsigned char		*access_src;
-	unsigned char		*edit_dst;
+	int	i;
 
+	if (n == '0' || (src == NULL && dst == NULL))
+		return (NULL);
 	i = 0;
-	access_src = (unsigned char *)src;
-	edit_dst = (unsigned char *)dst;
 	while (i < n)
 	{
-		edit_dst[i] = access_src[i];
+		*(char *)(dst + i) = *(char *)(src + i);
 		i++;
 	}
 	return (dst);

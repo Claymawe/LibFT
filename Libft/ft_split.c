@@ -6,7 +6,7 @@
 /*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 09:48:47 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/17 11:53:30 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/28 11:40:31 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,13 @@ static char	*word_dup(const char *str, int start, int finish)
 	return (word);
 }
 
+void	ft_variables(int i, size_t j, int index)
+{
+	i = 0;
+	j = 0;
+	index = -1;
+}
+
 char	**ft_split(const char *s, char c)
 {
 	int			i;
@@ -58,12 +65,12 @@ char	**ft_split(const char *s, char c)
 	int			index;
 	char		**split;
 
+	if (!s)
+		return (NULL);
 	split = malloc((count_words((char *)s, c) + 1) * sizeof(char *));
-	if (!s || !split)
+	if (!split)
 		return (0);
-	i = 0;
-	j = 0;
-	index = -1;
+	ft_variables(i = 0, j = 0, index = -1);
 	while (i <= ft_strlen((char *)s))
 	{
 		if (s[i] != c && index < 0)

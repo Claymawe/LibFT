@@ -6,7 +6,7 @@
 /*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:23:15 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/17 11:22:38 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/28 11:20:39 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,29 @@
 ** the substring begins at index 'start' and is of maximum size 'len'
 */
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char
+	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*rtn;
 	size_t	i;
+	size_t	j;
+	char	*str;
 
-	if (!s)
+	j = 0;
+	i = 0;
+	str = (char *)malloc(sizeof(*s) * (len + 1));
+	if (!str || !s)
 	{
 		return (NULL);
 	}
-	if (start > len)
-	{	
-		return (ft_strdup(""));
-	}
-	rtn = malloc(sizeof(char) * (len + 1));
-	i = 0;
-	if (!rtn)
+	while (s[i])
 	{
-		return (0);
-	}
-	while (i < len)
-	{
-		rtn[i] = *(s + start + i);
+		if (i >= start && j < len)
+		{
+			str[j] = s[i];
+			j++;
+		}
 		i++;
 	}
-	rtn[i] = '\0';
-	return (rtn);
+	str[j] = '\0';
+	return (str);
 }
