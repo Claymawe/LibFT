@@ -6,7 +6,7 @@
 /*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 13:32:19 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/21 14:09:09 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/28 12:13:31 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,3 +17,18 @@
 ** using the function 'del' and free(3) finall, the pointer to the list
 ** must be set to NULL
 */
+
+void	ft_lstclear(t_list **lst, void (*del)(void*))
+{
+	t_list	*tmp;
+
+	if (lst)
+	{
+		while (*lst)
+		{
+			tmp = (*lst)-> next;
+			ft_lstdelone(*lst, del);
+			(*lst) = tmp;
+		}
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: mrobinso <mrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 12:43:38 by mrobinso          #+#    #+#             */
-/*   Updated: 2021/09/17 09:48:26 by mrobinso         ###   ########.fr       */
+/*   Updated: 2021/09/28 12:00:43 by mrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** received as an argument.
 */
 
-static void	lengths(int n, size_t *len, int *weight)
+int	lengths(int n, size_t *len, int *weight)
 {
 	*len = 1;
 	if (n >= 0)
@@ -31,6 +31,7 @@ static void	lengths(int n, size_t *len, int *weight)
 		*weight *= 10;
 		*len += 1;
 	}
+	return (n);
 }
 
 char	*ft_itoa(int n)
